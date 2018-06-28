@@ -6,7 +6,6 @@ const ipc = electron.ipcRenderer
 
 
 const previewBtn = document.getElementById('previewBtn');
-const previewBtn2 = document.getElementById('previewBtn2');
 
 //Preview Button click event
 previewBtn.addEventListener('click', function(event) {
