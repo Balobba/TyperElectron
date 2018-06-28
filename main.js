@@ -2,8 +2,10 @@ const {app, BrowserWindow, Menu, ipcMain} = require('electron')
 const url = require('url');
 const path = require('path');
 
+
+
 let mainWindow;
-let newWindow;
+
 
 app.on('ready', createWindow)
   function createWindow () {
@@ -11,7 +13,7 @@ app.on('ready', createWindow)
     mainWindow = new BrowserWindow({width: 800, height: 600})
 
     mainWindow.loadURL(url.format({
-      pathname: path.join(__dirname, 'mainwindow.html'),
+      pathname: path.join(__dirname, './src/index.html'),
       protocol: 'file',
       slashes: true
     }));
@@ -20,30 +22,14 @@ app.on('ready', createWindow)
     mainWindow.on('closed', function() {
       app.quit();
     });
+
   }
 
-  //Handle new window
-  function addNewWindow() {
-    // Create the browser window.
-    newWindow = new BrowserWindow({width: 300, height: 200, title: 'New Window'})
 
-    newWindow.loadURL(url.format({
-      pathname: path.join(__dirname, 'newwindow.html'),
-      protocol: 'file',
-      slashes: true
-    }));
-
-    //Garbage collection handle
-    newWindow.on('closed', function() {
-      newWindow = null;
-    });
-  }
-
-  //Catch item:add
-  ipcMain.on('item:add', function(e, item) {
-    console.log(item);
-    mainWindow.webContents.send('item:add', item);
-    newWindow.close();
+  //Recieve the array of sentences from index.js and sends to preview.js
+  ipcMain.on('send-array', function(e, array) {
+    console.log(array);
+    mainWindow.webContents.send('sentenceValue', array);
   })
 
 
@@ -52,18 +38,8 @@ app.on('ready', createWindow)
   {
     label: 'File',
     submenu:[
-      {
-        label: 'Open Window / Add Item',
-        click(){
-          addNewWindow();
-        }
-      },
-      {
-        label: 'Clear List',
-        click(){
-          mainWindow.webContents.send('item:clear');
-        }
-      },
+      {role: 'close'},
+      {type: 'separator'},
       {
         label: 'Exit',
         accelerator:process.platform == 'darwin' ? 'Command+Q': 'Ctrl+Q', //Hotkey for closing the app.
