@@ -4,47 +4,31 @@ const BrowserWindow = electron.remote.BrowserWindow
 const url = require('url');
 const ipc = electron.ipcRenderer
 
-let previewWindow;
 
 const previewBtn = document.getElementById('previewBtn');
+const previewBtn2 = document.getElementById('previewBtn2');
 
 //Preview Button click event
 previewBtn.addEventListener('click', function(event) {
-  // Create the browser window.
-  //KEEP FRAME: TRUE FOR THE MOMENT
-  previewWindow = new BrowserWindow({frame: true, fullscreen: false, width: 600, height: 500, title: 'New Window'})
+
 
   let sentenceArray = [];
 
-  previewWindow.loadURL(url.format({
-    pathname: path.join(__dirname, './preview.html'),
-    protocol: 'file',
-    slashes: true
-  }));
-
-  //Garbage collection handle
-  previewWindow.on('closed', function() {
-    previewWindow = null;
-  });
-
   //Send sentences
   const nbrOfSentences = document.getElementById("fieldNumber").value;
-
 
   for (var i = 0; i <nbrOfSentences ; i++) {
     let tempNbr = 'input'+(i+1);
     let sendInput = document.getElementById(tempNbr).value;
     sentenceArray.push(sendInput);
-    //console.log(sentenceArray);
   }
-  ipc.send('send-array', sentenceArray);
-
+  //Send the array through the main.js to a preview window
+  ipc.send('createPreviewWindow', sentenceArray);
 });
 
 //Add text fields dynamically
 function addFields() {
   let number = document.getElementById("fieldNumber").value;
-  //console.log(number);
 
   let container = document.getElementById('textForm');
 

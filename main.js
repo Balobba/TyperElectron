@@ -5,9 +5,10 @@ const path = require('path');
 
 
 let mainWindow;
+let previewWindow;
+let arrayOfSentences;
 
-
-app.on('ready', createWindow)
+app.on('ready', createWindow);
   function createWindow () {
     // Create the browser window.
     mainWindow = new BrowserWindow({width: 800, height: 600})
@@ -25,11 +26,32 @@ app.on('ready', createWindow)
 
   }
 
+  function createPreviewWindow() {
+    // Create the browser window.
+    //KEEP FRAME: TRUE FOR THE MOMENT
+    previewWindow = new BrowserWindow({frame: true, fullscreen: false, width: 600, height: 500, title: 'New Window'})
+
+    previewWindow.loadURL(url.format({
+      pathname: path.join(__dirname, './src/preview.html'),
+      protocol: 'file',
+      slashes: true
+    }));
+
+      //Garbage collection handle
+      previewWindow.on('closed', function() {
+        previewWindow = null;
+      });
+
+      //Send over array of sentences
+      previewWindow.custom = {
+        'array': arrayOfSentences
+      }
+  }
 
   //Recieve the array of sentences from index.js and sends to preview.js
-  ipcMain.on('send-array', function(e, array) {
-    console.log(array);
-    mainWindow.webContents.send('sentenceValue', array);
+  ipcMain.on('createPreviewWindow', function(e, array){
+    arrayOfSentences = array;
+    createPreviewWindow();
   })
 
 
