@@ -1,21 +1,29 @@
-body{
+html, body {
+    height: 100%;
+}
+.center{
   text-align: center;
   margin: auto;
+  display: flex;
+  min-height: 100%;
+  font-size: 100px;
 }
 
+
+/*BELOW IS FOR TYPING ALGORITHM*/
 
 .word{
    display: absolute;
    top: 0px;
    left: 0px;
    min-height: 1em;
-
+   margin: auto;
 }
 
 .word .cursor{
   display:inline-block;
   min-width:1px;
-  background:black;
+  background:white;
   /*margin-left:-0.5em;*/
   margin-top:-0.1em;
   height:1.3em;

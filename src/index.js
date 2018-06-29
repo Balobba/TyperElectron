@@ -36,7 +36,7 @@ function addFields() {
   }
 
   for (i = 0; i < number; i++) {
-     container.appendChild(document.createTextNode("Sentence " + (i+1)));
+     container.appendChild(document.createTextNode("Sentence " + (i+1) + " "));
 
      let input = document.createElement("input");
      input.type="text";
@@ -45,4 +45,6 @@ function addFields() {
      container.appendChild(input);
      container.appendChild(document.createElement("br"));
   }
+
+  previewBtn.disabled = false;
 }

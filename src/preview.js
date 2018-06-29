@@ -11,7 +11,7 @@ console.log(arrayOfSentences);
 var typer = {
    words: arrayOfSentences,
    wordIndex: 0,
-   speed: 150,
+   speed: 150, //150
    nextWordWait: 1000,
    html: {
       word: document.querySelector('.myWord')
