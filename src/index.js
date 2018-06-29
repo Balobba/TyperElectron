@@ -64,7 +64,7 @@ function addFields() {
   let number = document.getElementById("fieldNumber").value;
   let container = document.getElementById('textForm');
 
-  if (isNaN(number) || number < 1 || number > 5) {
+  if (isNaN(number) || number < 1 || number > 5 || number % 1!= 0) {
     let errorMessage = document.getElementById('errorMessage').style.display = "block";
     while (container.firstChild) {
     container.removeChild(container.firstChild);
