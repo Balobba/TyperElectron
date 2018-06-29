@@ -31,3 +31,11 @@ body div{
   font-weight: bold;
   text-align: center;
 }
+
+#waitLabel{
+  text-align: center;
+}
+
+#speedLabel{
+  text-align: center;
+}

@@ -11,9 +11,9 @@
   <div class="d-flex justify-content-center text-white" id="optionDiv">
 
     <form class="typerForm" id="numberForm">
-      Number of lines (between 1 and 5):
+      Number of sentences (between 1 and 5):
       <input type="number" class="form-control-sm" name="quantity" min="1" max="5" id="fieldNumber" value="1">
-      <button type="button" class="btn btn-secondary" onclick="addFields()">Submit</button>
+      <button type="button" class="btn btn-secondary" onclick="addFields()">Add sentence(s)</button>
     </form>
   </div>
 
@@ -26,47 +26,65 @@
 
   </div>
 
+    <div class="d-flex justify-content-center text-white" id="speedLabel">Text typing speed:</div>
   <div class="d-flex justify-content-center text-white" id="radioBtnSpeed">
-
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="500">
+      <input class="form-check-input" type="radio" name="speedRadios" id="exampleRadios1" value="500">
       <label class="form-check-label" for="exampleRadios1">
         Slow
       </label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="150" checked>
+      <input class="form-check-input" type="radio" name="speedRadios" id="exampleRadios2" value="150" checked>
       <label class="form-check-label" for="exampleRadios2">
-        Regular
+        Normal
       </label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="100">
+      <input class="form-check-input" type="radio" name="speedRadios" id="exampleRadios3" value="100">
       <label class="form-check-label" for="exampleRadios3">
         Fast
       </label>
     </div>
     <div class="form-check disabled">
-      <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios4" value="10" disabled>
+      <input class="form-check-input" type="radio" name="speedRadios" id="exampleRadios4" value="10" disabled>
       <label class="form-check-label" for="exampleRadios4">
         Ludicrous Speed
       </label>
     </div>
   </div>
 
+    <div class="d-flex justify-content-center text-white" id="waitLabel">Wait for words to clear:</div>
+  <div class="d-flex justify-content-center text-white" id="radioBtnSpeed">
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="waitRadios" id="radioWait" value="1000" checked>
+      <label class="form-check-label" for="radioWait">
+        Wait
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="waitRadios" id="radioNoWait" value="100" >
+      <label class="form-check-label" for="radioNoWait">
+        No wait (Recommended with fast type speed)
+      </label>
+
+    </div>
+  </div>
+
   <div class="d-flex justify-content-center text-white" id="checkboxSettings">
     <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="checkboxCursor" checked>
-    <label class="form-check-label" for="checkboxCursor">
-      Cursor
-    </label>
-  </div>
-  <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="checkboxFullscreen">
-  <label class="form-check-label" for="checkboxFullscreen">
-    Fullscreen (Ctrl+W to close fullscreen!)
-  </label>
-</div>
+      <input class="form-check-input" type="checkbox" value="" id="checkboxCursor" checked>
+      <label class="form-check-label" for="checkboxCursor">
+        Cursor
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="checkboxFullscreen">
+      <label class="form-check-label" for="checkboxFullscreen">
+        Fullscreen (Ctrl+W to close fullscreen!)
+      </label>
+    </div>
   </div>
 
   <div class="d-flex justify-content-center text-white">

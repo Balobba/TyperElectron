@@ -16,11 +16,10 @@ previewBtn.addEventListener('click', function(event) {
   //text speed
   let speed = 150;
 
-  let radios = document.getElementsByName('exampleRadios');
-  for (var i = 0, length = radios.length; i < length; i++) {
-    if (radios[i].checked) {
-      // do whatever you want with the checked radio
-      speed = radios[i].value;
+  let speedRadios = document.getElementsByName('speedRadios');
+  for (var i = 0, length = speedRadios.length; i < length; i++) {
+    if (speedRadios[i].checked) {
+      speed = speedRadios[i].value;
       info.push(speed);
       // only one radio can be logically checked, don't check the rest
       break;
@@ -52,6 +51,16 @@ previewBtn.addEventListener('click', function(event) {
   let fullscreen = document.getElementById('checkboxFullscreen').checked;
   info.push(fullscreen);
 
+  let wait;
+  let waitRadios = document.getElementsByName('waitRadios');
+  for (var i = 0, length = waitRadios.length; i < length; i++) {
+    if (waitRadios[i].checked) {
+      wait = waitRadios[i].value;
+      info.push(wait);
+      // only one radio can be logically checked, don't check the rest
+      break;
+    }
+  }
 
 
   //Send the array through the main.js to a preview window

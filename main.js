@@ -10,6 +10,7 @@ let arrayOfSentences;
 let speed;
 let cursor;
 let fullscreen;
+let wait;
 
 app.on('ready', createWindow);
   function createWindow () {
@@ -49,7 +50,8 @@ app.on('ready', createWindow);
       previewWindow.custom = {
         'array': arrayOfSentences,
         'speed': speed,
-        'cursor': cursor
+        'cursor': cursor,
+        'wait': wait
       }
   }
 
@@ -59,6 +61,7 @@ app.on('ready', createWindow);
     arrayOfSentences = array[1];
     cursor = array[2];
     fullscreen = array[3];
+    wait = array[4];
     createPreviewWindow();
   })
 

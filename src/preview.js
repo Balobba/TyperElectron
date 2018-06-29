@@ -5,6 +5,7 @@ let currentWindow = electron.remote.getCurrentWindow();
 let arrayOfSentences = currentWindow.custom.array;
 let textSpeed = currentWindow.custom.speed;
 let cursorStatus = currentWindow.custom.cursor;
+let wait = currentWindow.custom.wait;
 let toggleCursor;
 //Check whether the cursor should show or not
 if(cursorStatus){
@@ -21,7 +22,7 @@ var typer = {
    words: arrayOfSentences,
    wordIndex: 0,
    speed: textSpeed, //150 500 100 10
-   nextWordWait: 1000,
+   nextWordWait: wait, //1000 100
    html: {
       word: document.querySelector('.myWord')
    },
