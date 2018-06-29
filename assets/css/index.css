@@ -1,5 +1,6 @@
 h1{
   text-align: center;
+
 }
 
 body div{
@@ -12,4 +13,13 @@ body div{
 
 #radioBtnSpeed div{
   margin: 10px;
+}
+
+#checkboxSettings div{
+    margin: 10px;
+}
+
+#typerApp{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

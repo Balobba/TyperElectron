@@ -3,7 +3,16 @@ const electron = require('electron')
 //To access the array from main.js since ipc doesn't work for newly created window
 let currentWindow = electron.remote.getCurrentWindow();
 let arrayOfSentences = currentWindow.custom.array;
-console.log(arrayOfSentences);
+let textSpeed = currentWindow.custom.speed;
+let cursorStatus = currentWindow.custom.cursor;
+let toggleCursor;
+//Check whether the cursor should show or not
+if(cursorStatus){
+  let toggleCursor = document.getElementById('cursorID').style.visibility = "visible";
+}else{
+  let toggleCursor = document.getElementById('cursorID').style.visibility = "hidden";
+}
+
 
 
 //Typer Algorithm
@@ -11,7 +20,7 @@ console.log(arrayOfSentences);
 var typer = {
    words: arrayOfSentences,
    wordIndex: 0,
-   speed: 150, //150
+   speed: textSpeed, //150 500 100 10
    nextWordWait: 1000,
    html: {
       word: document.querySelector('.myWord')

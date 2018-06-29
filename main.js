@@ -7,6 +7,9 @@ const path = require('path');
 let mainWindow;
 let previewWindow;
 let arrayOfSentences;
+let speed;
+let cursor;
+let fullscreen;
 
 app.on('ready', createWindow);
   function createWindow () {
@@ -29,7 +32,7 @@ app.on('ready', createWindow);
   function createPreviewWindow() {
     // Create the browser window.
     //KEEP FRAME: TRUE FOR THE MOMENT
-    previewWindow = new BrowserWindow({frame: true, fullscreen: false, width: 600, height: 500, title: 'New Window'})
+    previewWindow = new BrowserWindow({frame: !fullscreen, fullscreen: fullscreen, width: 600, height: 500, title: 'New Window'})
 
     previewWindow.loadURL(url.format({
       pathname: path.join(__dirname, './src/preview.html'),
@@ -44,13 +47,18 @@ app.on('ready', createWindow);
 
       //Send over array of sentences
       previewWindow.custom = {
-        'array': arrayOfSentences
+        'array': arrayOfSentences,
+        'speed': speed,
+        'cursor': cursor
       }
   }
 
   //Recieve the array of sentences from index.js and sends to preview.js
   ipcMain.on('createPreviewWindow', function(e, array){
-    arrayOfSentences = array;
+    speed = array[0];
+    arrayOfSentences = array[1];
+    cursor = array[2];
+    fullscreen = array[3];
     createPreviewWindow();
   })
 

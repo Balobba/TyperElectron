@@ -10,7 +10,25 @@ const previewBtn = document.getElementById('previewBtn');
 //Preview Button click event
 previewBtn.addEventListener('click', function(event) {
 
+  //The array that sends information to the preview window
+  let info = [];
 
+  //text speed
+  let speed = 150;
+
+  let radios = document.getElementsByName('exampleRadios');
+  for (var i = 0, length = radios.length; i < length; i++) {
+    if (radios[i].checked) {
+        // do whatever you want with the checked radio
+        speed = radios[i].value;
+        info.push(speed);
+        // only one radio can be logically checked, don't check the rest
+        break;
+    }
+}
+
+
+  //sentences filled in
   let sentenceArray = [];
 
   //Send sentences
@@ -21,8 +39,23 @@ previewBtn.addEventListener('click', function(event) {
     let sendInput = document.getElementById(tempNbr).value;
     sentenceArray.push(sendInput);
   }
+
+  //Add sentences to info array
+  info.push(sentenceArray);
+
+
+  //toggle cursor
+  let cursor = document.getElementById('checkboxCursor').checked;
+  info.push(cursor);
+
+  //toggle fullscreen
+  let fullscreen = document.getElementById('checkboxFullscreen').checked;
+  info.push(fullscreen);
+
+
+
   //Send the array through the main.js to a preview window
-  ipc.send('createPreviewWindow', sentenceArray);
+  ipc.send('createPreviewWindow', info);
 });
 
 //Add text fields dynamically
@@ -36,14 +69,14 @@ function addFields() {
   }
 
   for (i = 0; i < number; i++) {
-     container.appendChild(document.createTextNode("Sentence " + (i+1) + " "));
+    container.appendChild(document.createTextNode("Sentence " + (i+1) + " "));
 
-     let input = document.createElement("input");
-     input.type="text";
-     input.placeholder = "Insert text";
-     input.id = "input" + (i+1);
-     container.appendChild(input);
-     container.appendChild(document.createElement("br"));
+    let input = document.createElement("input");
+    input.type="text";
+    input.placeholder = "Insert text";
+    input.id = "input" + (i+1);
+    container.appendChild(input);
+    container.appendChild(document.createElement("br"));
   }
 
   previewBtn.disabled = false;
