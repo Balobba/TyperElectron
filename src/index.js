@@ -19,13 +19,13 @@ previewBtn.addEventListener('click', function(event) {
   let radios = document.getElementsByName('exampleRadios');
   for (var i = 0, length = radios.length; i < length; i++) {
     if (radios[i].checked) {
-        // do whatever you want with the checked radio
-        speed = radios[i].value;
-        info.push(speed);
-        // only one radio can be logically checked, don't check the rest
-        break;
+      // do whatever you want with the checked radio
+      speed = radios[i].value;
+      info.push(speed);
+      // only one radio can be logically checked, don't check the rest
+      break;
     }
-}
+  }
 
 
   //sentences filled in
@@ -60,24 +60,34 @@ previewBtn.addEventListener('click', function(event) {
 
 //Add text fields dynamically
 function addFields() {
+  let errorMessage;
   let number = document.getElementById("fieldNumber").value;
-
   let container = document.getElementById('textForm');
 
-  while(container.hasChildNodes()){
-    container.removeChild(container.lastChild);
+  if (isNaN(number) || number < 1 || number > 5) {
+    let errorMessage = document.getElementById('errorMessage').style.display = "block";
+    while (container.firstChild) {
+    container.removeChild(container.firstChild);
+}
+  } else {
+    let errorMessage = document.getElementById('errorMessage').style.display = "none";
+
+
+    while(container.hasChildNodes()){
+      container.removeChild(container.lastChild);
+    }
+
+    for (i = 0; i < number; i++) {
+      container.appendChild(document.createTextNode("Sentence " + (i+1) + " "));
+
+      let input = document.createElement("input");
+      input.type="text";
+      input.placeholder = "Insert text";
+      input.id = "input" + (i+1);
+      container.appendChild(input);
+      container.appendChild(document.createElement("br"));
+    }
+
+    previewBtn.disabled = false;
   }
-
-  for (i = 0; i < number; i++) {
-    container.appendChild(document.createTextNode("Sentence " + (i+1) + " "));
-
-    let input = document.createElement("input");
-    input.type="text";
-    input.placeholder = "Insert text";
-    input.id = "input" + (i+1);
-    container.appendChild(input);
-    container.appendChild(document.createElement("br"));
-  }
-
-  previewBtn.disabled = false;
 }

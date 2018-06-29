@@ -23,3 +23,11 @@ body div{
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
+#errorMessage{
+  margin: 0;
+  display: none;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
