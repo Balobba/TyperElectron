@@ -2,8 +2,10 @@
 
 ### How to run
 
-* Clone Project or download zip
+`$ git clone https://github.com/Balobba/TyperElectron.git`
 
-* `$ npm init`
+`$ cd TyperElectron`
 
-* `$ npm start`
+`$ npm install`
+
+`$ npm start`
