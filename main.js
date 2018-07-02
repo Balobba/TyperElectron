@@ -2,7 +2,6 @@ const {app, BrowserWindow, Menu, ipcMain, powerSaveBlocker} = require('electron'
 const url = require('url');
 const path = require('path');
 
-
 let mainWindow;
 let previewWindow;
 let arrayOfSentences;
@@ -11,6 +10,9 @@ let cursor;
 let fullscreen;
 let wait;
 let powerSaveBlockerID;
+
+//Set environment
+process.env.NODE_ENV = 'production';
 
 app.on('ready', createWindow);
 function createWindow () {
@@ -34,7 +36,6 @@ function createWindow () {
 
 function createPreviewWindow() {
   // Create the browser window.
-  //KEEP FRAME: TRUE FOR THE MOMENT
   previewWindow = new BrowserWindow({frame: !fullscreen, fullscreen: fullscreen, width: 600, height: 500, title: 'New Window'})
 
   previewWindow.loadURL(url.format({
@@ -55,11 +56,6 @@ function createPreviewWindow() {
     'cursor': cursor,
     'wait': wait
   }
-
-
-  //Prevents the application
-
-
 
 }
 
